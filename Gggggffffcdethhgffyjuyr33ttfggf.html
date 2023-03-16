@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<script>		window.onload = function() {
+
+			if(window.location.search === "?raj") {
+
+				var name = localStorage.getItem("name");
+
+				if(name) {
+
+					document.getElementById("name").innerHTML = "Welcome back , " + name + " ";
+
+				} else {
+
+					document.getElementById("name-form-container").style.display = "block";
+
+				}
+
+			} else {
+
+				document.getElementById("not-allowed").style.display = "block";
+
+			}
+
+			document.getElementById("name-form").addEventListener("submit", function(event) {
+
+				event.preventDefault();
+
+				var nameInput = document.getElementById("name-input");
+
+				localStorage.setItem("name", nameInput.value);
+
+				document.getElementById("name-form-container").style.display = "none";
+
+				document.getElementById("name").innerHTML = "Welcome, " + nameInput.value + "!";
+
+				document.getElementById("name-input-container").style.display = "block";
+
+				document.getElementById("name-input-value").innerHTML = nameInput.value;
+
+				nameInput.value = "";
+
+			});
+
+			var name = localStorage.getItem("name");
+
+			if(name) {
+
+				document.getElementById("name-input-container").style.display = "block";
+
+				document.getElementById("name-input-value").innerHTML = name;
+
+			}
+
+		};
+
+	</script>
+
+</head>
+
+<body>
+
+	<div id="name"></div>
+
+	<div id="not-allowed" style="display: none;">You are not allowed to access this page directly.</div>
+
+	<div id="name-form-container" style="display: none;">
+
+		<form id="name-form">
+
+			<label for="name-input">Enter your name:</label>
+
+			<input type="text" id="name-input" required>
+
+			<button type="submit">Save</button>
+
+		</form>
+
+	</div>
+
+	<div id="name-input-container" style="display: none;">
+
+		<p>Your name: <span id="name-input-value"></span></p>
+
+	</div>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>mining dashboard</title>
+
+    <style>
+
+    li{
+
+      font-size: 40px;
+
+      background-color: ;
+
+    }
+
+      body {
+
+        font-family: Arial, sans-serif;
+
+        margin: 0;
+
+        padding: 0;
+
+        background-color: #00FDBF73;
+
+      }
+
+      h1 {
+
+        text-align: center;
+
+        margin-top: 30px;
+
+        
+
+        
+
+      }
+
+      p {
+
+        font-size: 40px;
+
+        text-align: center;
+
+        margin-top: 50px;
+
+      }
+
+      span {
+
+        font-size: 40px;
+
+        font-weight: bold;
+
+        color: #333;
+
+        background-color: #FFFF74;
+
+        
+
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    
+
+<!--  
+
+<div id="the1" style=" width: 200px; height: 106px; background: ; font-size: px; color: red;">
+
+<p style="font-size: 20px;">total balance <br>Balance:<spa id="total-time"></span></p>
+
+</div>
+
+<style>
+
+#the1{
+
+    position: fixed;
+
+    top:0rem; right: 0rem;
+
+    z-index: 1000;
+
+    height: 1rem;
+
+    width: 1rem;
+
+    line-height: 0.7rem;
+
+    border-radius: 50%;
+
+    font-size: rem;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    color: #757575;
+
+    background: rebeccapurple;
+
+}
+
+-->
+
+</style>
+
+    
+
+    <p>Total Balance: <span id="total-time"></span></p>
+
+    <script>
+
+      var startTime = Date.now();
+
+      var totalTime = 0;
+
+      // Check if there is a previous total time stored in local storage
+
+      if (localStorage.getItem("totalTime")) {
+
+        totalTime = parseInt(localStorage.getItem("totalTime"));
+
+        startTime = Date.now() - totalTime;
+
+      }
+
+      // Update the total time every second
+
+      setInterval(function() {
+
+        var currentTime = Date.now();
+
+        var elapsedTime = currentTime - startTime;
+
+        startTime = currentTime;
+
+        totalTime += elapsedTime;
+
+        // Store the total time in local storage
+
+        localStorage.setItem("totalTime", totalTime);
+
+        // Display the total time in the correct format
+
+        var minutes = Math.floor(totalTime / 100000);
+
+        var seconds = Math.floor((totalTime % 100000) / 1000);
+
+        document.getElementById("total-time").textContent = minutes + "." + seconds + "   ";
+
+      }, 1000);
+
+    </script>
+
+  </body>
+
+</html>
+
+<html>
+
+  <body>
+
+    <h1>Device Details</h1>
+
+    <ul>
+
+      <li>Screen size: <span id="screensize"></span></li>
+
+      <li>Operating system: <span id="os"></span></li>
+
+      <li>Browser: <span id="browser"></span></li>
+
+    </ul>
+
+    
+
+    <script>
+
+      document.getElementById("screensize").innerHTML = screen.width + "x" + screen.height;
+
+      var os = "Unknown";
+
+      if (navigator.appVersion.indexOf("Win") != -1) os = "Windows";
+
+      if (navigator.appVersion.indexOf("Mac") != -1) os = "MacOS";
+
+      if (navigator.appVersion.indexOf("X11") != -1) os = "UNIX";
+
+      if (navigator.appVersion.indexOf("Linux") != -1) os = "Linux";
+
+      document.getElementById("os").innerHTML = os;
+
+      document.getElementById("browser").innerHTML = navigator.userAgent;
+
+    </script>
+
+  </body>
+
+</html>
+
+<html>
+
+  <body>
+
+    
+
+    
+
+    
+
+    
+
+    <h1>Device Details</h1>
+
+    <ul>
+
+      <li>Battery level: <span id="battery"></span></li>
+
+      <li>Network speed: <span id="network"></span></li>
+
+    </ul>
+
+    
+
+    <script>
+
+      // Retrieve battery level
+
+      navigator.getBattery().then(function(battery) {
+
+        updateBatteryLevel(battery.level * 100);
+
+        battery.addEventListener("levelchange", function() {
+
+          updateBatteryLevel(battery.level * 100);
+
+        });
+
+      });
+
+      
+
+      function updateBatteryLevel(level) {
+
+        document.getElementById("battery").innerHTML = level + "%";
+
+      }
+
+      
+
+      // Retrieve network speed
+
+      var imageAddr = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
+
+      var startTime, endTime;
+
+      var downloadSize = 10300;
+
+      var download = new Image();
+
+      download.onload = function() {
+
+        endTime = (new Date()).getTime();
+
+        showResults();
+
+      }
+
+      
+
+      startTime = (new Date()).getTime();
+
+      var cacheBuster = "?nnn=" + startTime;
+
+      download.src = imageAddr + cacheBuster;
+
+      
+
+      function showResults() {
+
+        var duration = (endTime - startTime) / 1000;
+
+        var bitsLoaded = downloadSize * 8;
+
+        var speedBps = (bitsLoaded / duration).toFixed(2);
+
+        var speedKbps = (speedBps / 1024).toFixed(2);
+
+        document.getElementById("network").innerHTML = speedKbps + " kbps";
+
+      }
+
+    </script>
+
+  </body>
+
+</html>
